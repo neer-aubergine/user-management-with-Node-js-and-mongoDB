@@ -1,20 +1,13 @@
 import express from "express";
-export const route = express.Router();
+const route = express.Router();
 
-const services = import('../services/render');
-const controller = import('../controller/controller');
+import { userCreate , userDelete , userUpdate , userGet , userGetAll} from '../controllers/controller.js';
 
-
-
-route.get('/', services.homeRoutes);
-route.get('/add-user', services.add_user);
-route.get('/update-user', services.update_user);
-
-
-route.post('/api/users', controller.create);
-route.get('/api/users', controller.find);
-route.put('/api/users/:id', controller.update);
-route.delete('/api/users/:id', controller.delete);
+route.post('/api/add-user', userCreate);
+route.delete('/api/users/:id', userDelete);
+route.put('/api/users/:id', userUpdate);
+route.get('/api/users/:id', userGet);
+route.get('/api/users', userGetAll);
 
 export default route
 
