@@ -1,0 +1,28 @@
+{
+  "name": "user-management-with-node-js-and-mongodb",
+  "version": "1.0.0",
+  "description": "User management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "User",
+    "Management",
+    "with",
+    "node",
+    "js",
+    "and",
+    "mongoDB"
+  ],
+  "author": "neer amrutia",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3"
+  },
+  "type": "module"
+}
