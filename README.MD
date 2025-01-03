@@ -32,6 +32,7 @@ MONGO_URI = # your mongo atlas url with username and password
 - [x] Login API receives email & password from user and sends appropriate login status
 - [x] organized folde and file structure
 - [x] bcrypt to store password in hash format
+- [x] express validator for server side validations
 
 
 ## 🌍 Live Demo

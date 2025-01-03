@@ -28,7 +28,7 @@ export const getAllUsers = async () => {
 export const loginUser = async (email, password) => {
     const user = await Userdb.findOne({ email });
     if (!user) {
-        throw new Error('User not found');
+        throw new Error('Invalid credentials');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);

@@ -1,11 +1,9 @@
 import { createUser , deleteUser , updateUser , getUser , getAllUsers , loginUser} from '../services/userServices.js';
-
+import { validationResult } from 'express-validator';
 export const userCreate = async (req, res) => {
-        if (!req.body  || !req.body.name || !req.body.email || !req.body.gender || !req.body.password
-        ) {
-        console.log(req.body)
-        res.status(400).send({ message: 'Content cannot be empty' });
-        return;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
 
     try {
@@ -95,12 +93,13 @@ export const userGetAll = async (req, res) => {
 };
 
 export const userLogin = async (req, res) => {
-    const { email, password } = req.body;
+    
 
-    if (!email || !password) {
-        res.status(400).send({ message: 'Email and password are required' });
-        return;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
+    const { email, password } = req.body;
 
     try {
         const user = await loginUser(email, password);
