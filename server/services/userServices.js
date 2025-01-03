@@ -18,11 +18,11 @@ export const updateUser = async (userId, userData) => {
 };
 
 export const getUser = async (userId) => {
-    return await Userdb.findById(userId);
+    return await Userdb.findById(userId).select('-password');
 };
 
 export const getAllUsers = async () => {
-    return await Userdb.find();
+    return await Userdb.find().select('-password');
 };
 
 export const loginUser = async (email, password) => {

@@ -33,3 +33,20 @@ MONGO_URI = # your mongo atlas url with username and password
 - [x] organized folde and file structure
 - [x] bcrypt to store password in hash format
 
+
+## 🌍 Live Demo
+
+👉 [Live Demo - My Website](https://user-management-with-node-js-and-mongo-db.vercel.app/)
+
+You can test the backend by hitting the API endpoints on the live demo link above. Here are some example endpoints you can use:
+
+| **Action**       | **Method** | **Endpoint**            |
+|------------------|------------|-------------------------|
+| Create User      | POST       | `/api/add-user`         |
+| Delete User      | DELETE     | `/api/users/:id`        |
+| Update User      | PUT        | `/api/users/:id`        |
+| Get User         | GET        | `/api/users/:id`        |
+| Get All Users    | GET        | `/api/users`            |
+| Login User       | POST       | `/api/login`            |
+
+Replace `:id` with the actual user ID when making requests to specific user endpoints.

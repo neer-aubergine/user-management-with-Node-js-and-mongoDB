@@ -16,7 +16,7 @@ export const userCreate = async (req, res) => {
             password: req.body.password
         };
         await createUser(userData);
-        res.status(201).redirect('/add-user');
+        res.status(201).send({ message: 'User created successfully' });
     } catch (err) {
         res.status(500).send({
             message: err.message || "Some error occurred while creating a create operation"
@@ -56,7 +56,7 @@ export const userUpdate = async (req, res) => {
         if (!user) {
             res.status(404).send({ message: `User not found with id ${userId}` });
         } else {
-            res.status(200).send(user);
+            res.status(200).send({ message: 'User updated successfully' });
         }
     } catch (err) {
         res.status(500).send({
@@ -73,7 +73,7 @@ export const userGet = async (req, res) => {
         if (!user) {
             res.status(404).send({ message: `User not found with id ${userId}` });
         } else {
-            res.status(200).send(user);
+            res.status(200).send({user : {name : user.name , email : user.email}});
         }
     } catch (err) {
         res.status(500).send({
