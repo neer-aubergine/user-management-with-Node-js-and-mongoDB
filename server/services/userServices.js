@@ -1,6 +1,10 @@
 import {Userdb} from '../models/userModel.js';
-
+import bcrypt from 'bcrypt';
 export const createUser = async (userData) => {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+    userData.password = hashedPassword;
+
     const user = new Userdb(userData);
     return await user.save();
 };
@@ -19,4 +23,18 @@ export const getUser = async (userId) => {
 
 export const getAllUsers = async () => {
     return await Userdb.find();
+};
+
+export const loginUser = async (email, password) => {
+    const user = await Userdb.findOne({ email });
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        throw new Error('Invalid credentials');
+    }
+
+    return new Object({ message: 'Login successful' ,user : {name : user.name , email : user.email}});
 };

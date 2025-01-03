@@ -1,4 +1,4 @@
-import { createUser , deleteUser , updateUser , getUser , getAllUsers} from '../services/userServices.js';
+import { createUser , deleteUser , updateUser , getUser , getAllUsers , loginUser} from '../services/userServices.js';
 
 export const userCreate = async (req, res) => {
         if (!req.body  || !req.body.name || !req.body.email || !req.body.gender || !req.body.password
@@ -90,6 +90,24 @@ export const userGetAll = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving users"
+        });
+    }
+};
+
+export const userLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        res.status(400).send({ message: 'Email and password are required' });
+        return;
+    }
+
+    try {
+        const user = await loginUser(email, password);
+        res.status(200).send(user);
+    } catch (err) {
+        res.status(401).send({
+            message: err.message || "Invalid credentials"
         });
     }
 };
